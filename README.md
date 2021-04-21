@@ -33,3 +33,11 @@
 
     export default App;
 ```
+
+### (3) Create Required Components
+
+    (1) StreamList
+    (2) StreamCreate
+    (3) StreamEdit
+    (4) StreamDelete
+    (5) StreamShow
