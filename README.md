@@ -130,3 +130,11 @@
 
     export default App;
 ```
+
+### (6) Steps Of Creating Authentication
+
+    (1) Create New Project Called 'streamy' In 'console.developers.google.com'
+    
+    (2) Setup Auth Confirmation Screen By Select 'credentials' Then 'configure consent screen' And Enter App Name 'streamy'
+    
+    (3) Then Create Credentials Then Select 'OAuth Client ID' Then Select 'Web Application' And Enter App Name 'Web Client 1' Then Enter Authorized Javascript Origins 'http://localhost:3000' Then Click Create Button Then It Will Give You The Client Id '247182517046-irk3j9lvcbed82vn54dt33mdmqoph5qt.apps.googleusercontent.com'
