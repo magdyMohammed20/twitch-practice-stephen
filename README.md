@@ -138,3 +138,72 @@
     (2) Setup Auth Confirmation Screen By Select 'credentials' Then 'configure consent screen' And Enter App Name 'streamy'
     
     (3) Then Create Credentials Then Select 'OAuth Client ID' Then Select 'Web Application' And Enter App Name 'Web Client 1' Then Enter Authorized Javascript Origins 'http://localhost:3000' Then Click Create Button Then It Will Give You The Client Id '247182517046-irk3j9lvcbed82vn54dt33mdmqoph5qt.apps.googleusercontent.com'
+
+### (6) Include Google Script Tag Inside 'index.html' And Can Test It By Write 'gapi' In Browser Console
+
+#### App.js
+
+```html
+    <script src="https://apis.google.com/js/api.js"></script>
+```
+
+### (7) Create 'GoogleAuth.js' Component Inside 'Components' Folder And Import It Inside 'Header.js'
+
+#### Components/GoogleAuth.js
+
+```js
+    import React , {useEffect} from 'react'
+
+    function GoogleAuth() {
+
+        useEffect(() => {
+            console.log('Hellow');
+            window.gapi.load('client:auth2' , () => {
+                window.gapi.client.init({
+                    clientId: '247182517046-irk3j9lvcbed82vn54dt33mdmqoph5qt.apps.googleusercontent.com',
+                    scope: 'email'
+                })
+            });
+        } , [])
+        return (
+            <div>
+                GoogleAuth
+            </div>
+        )
+    }
+
+    export default GoogleAuth
+```
+
+#### Components/Header.js
+
+```js
+    import React from 'react'
+    import {Link} from 'react-router-dom'
+    import GoogleAuth from './GoogleAuth'
+
+    function Header() {
+        return (
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <Link className="navbar-brand" to="/">Twitch.com</Link>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav w-100">
+                    <li className="nav-item active">
+                        <Link className="nav-link" to="/" >Streamer</Link>
+                    </li>
+                    <li className="nav-item ml-auto">
+                        <Link className="nav-link" to="/"> All Streams </Link>
+                    </li>
+                    <GoogleAuth/>
+                    </ul>
+                </div>
+            </nav>
+        )
+    }
+
+    export default Header
+```
