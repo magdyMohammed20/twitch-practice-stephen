@@ -258,7 +258,7 @@
     export default GoogleAuth
 ```
 
-### (8) Updating Auth Status
+### (9) Updating Auth Status
 
 #### Components/GoogleAuth.js
 
@@ -309,6 +309,73 @@
         return (
             <div>
                 GoogleAuth
+                {renderAuthBtn()}
+            </div>
+        )
+    }
+
+    export default GoogleAuth
+
+```
+
+### (10) Displaying SignIn And SignOut Buttons
+
+#### Components/GoogleAuth.js
+
+```js
+    import React , {useState , useEffect} from 'react'
+
+    function GoogleAuth() {
+
+        const[isSignedIn , setIsSignedIn] = useState(null);
+
+        useEffect(() => {
+
+            window.gapi.load('client:auth2' , () => {
+                window.gapi.client.init({
+                    clientId: '247182517046-irk3j9lvcbed82vn54dt33mdmqoph5qt.apps.googleusercontent.com',
+                    scope: 'email'
+                }).then(() => {
+                    // Create Then For Get Auth Status
+                    const auth = window.gapi.auth2.getAuthInstance();
+                    setIsSignedIn(auth.isSignedIn.get());
+
+                    // Updating Auth State
+                    // Use gapi.auth2.getAuthInstance().signOut()
+                    // And gapi.auth2.getAuthInstance().signIn() For Check
+                    auth.isSignedIn.listen(() => {
+                        setIsSignedIn(auth.isSignedIn.get());
+                    })
+                })
+            });
+        } , [])
+    
+
+        // Function For Rendering Auth Status
+        // Displaying SignIn And SignOut Buttons
+        const renderAuthBtn = () => {
+            if(isSignedIn === null){
+                return null;
+            } 
+
+            else if(isSignedIn){
+                return (
+                    <button className="btn btn-danger">
+                        SignOut
+                    </button>
+                )
+            }
+
+            else{
+                return (
+                    <button className="btn btn-success">
+                        SignIn With Google
+                    </button>
+                )
+            }
+        }
+        return (
+            <div>
                 {renderAuthBtn()}
             </div>
         )

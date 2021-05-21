@@ -27,22 +27,30 @@ function GoogleAuth() {
  
 
     // Function For Rendering Auth Status
+    // Displaying SignIn And SignOut Buttons
     const renderAuthBtn = () => {
         if(isSignedIn === null){
-            return <div>We Don't Know If You Signed In</div>
+            return null;
         } 
 
         else if(isSignedIn){
-            return <div>Congs You Signed In Now</div>
+            return (
+                <button className="btn btn-danger">
+                    SignOut
+                </button>
+            )
         }
 
         else{
-            return <div>Sorry You Don't Signed In</div>
+            return (
+                <button className="btn btn-success">
+                    SignIn With Google
+                </button>
+            )
         }
     }
     return (
         <div>
-            GoogleAuth
             {renderAuthBtn()}
         </div>
     )
