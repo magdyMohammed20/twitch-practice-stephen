@@ -24,7 +24,15 @@ function GoogleAuth() {
             })
         });
     } , [])
- 
+    
+    const onSignIn = () => {
+        window.gapi.auth2.getAuthInstance().signIn();
+    }
+
+    const onSignOut = () => {
+        window.gapi.auth2.getAuthInstance().signOut();
+    }
+
 
     // Function For Rendering Auth Status
     // Displaying SignIn And SignOut Buttons
@@ -35,7 +43,7 @@ function GoogleAuth() {
 
         else if(isSignedIn){
             return (
-                <button className="btn btn-danger">
+                <button className="btn btn-danger" onClick={() => onSignOut()}>
                     SignOut
                 </button>
             )
@@ -43,7 +51,7 @@ function GoogleAuth() {
 
         else{
             return (
-                <button className="btn btn-success">
+                <button className="btn btn-success" onClick={() => onSignIn()}>
                     SignIn With Google
                 </button>
             )
