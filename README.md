@@ -603,3 +603,36 @@
     export default connect(null , {signIn , signOut})(GoogleAuth)
 
 ```
+
+### (16) Building [authReducer] And Import It Inside [index.js] That In [reducers] Folder
+
+#### /redux/reducers/authReducers.js
+
+```js
+    const initialState = {
+        isSignedIn : null
+    }
+
+    export default (state = initialState , action) => {
+        switch(action.type){
+            case "SIGN_IN":
+                return {...state , isSignedIn : true}
+
+            case "SIGN_OUT":
+                return {...state , isSignedIn : false}    
+
+            default: return state
+        }
+    }
+```
+
+#### /redux/reducers/index.js
+
+```js
+    import {combineReducers} from 'redux'
+    import authReducer from './authReducer'
+
+    export default combineReducers({
+        auth : authReducer
+    })
+```
