@@ -459,3 +459,54 @@
     export default GoogleAuth
 
 ```
+
+### (12) Install [redux] And [react-redux]
+
+    npm i --save redux react-redux
+
+### (13) Create Required Redux Files
+
+    (1) actions [index.js]
+    (2) reducers [index.js]
+
+### (14) Preparing Redux Use
+
+#### /redux/reducers/index.js
+
+```js
+    import {combineReducers} from 'redux'
+
+    export default combineReducers({
+        replaceMe : () => "Hellow World"
+    })
+```
+
+#### /index.js
+
+```js
+    import React from 'react';
+    import ReactDOM from 'react-dom';
+    import './index.css';
+    import App from './App';
+    import reportWebVitals from './reportWebVitals';
+    import 'bootstrap/dist/css/bootstrap.min.css';
+    import {createStore} from 'redux'
+    import {Provider} from 'react-redux'
+    import allReducers from './redux/reducers'
+
+    const store = createStore(allReducers);
+
+    ReactDOM.render(
+    <React.StrictMode>
+        <Provider store={store}>
+        <App />
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
+    );
+
+    // If you want to start measuring performance in your app, pass a function
+    // to log results (for example: reportWebVitals(console.log))
+    // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+    reportWebVitals();
+```
