@@ -1,4 +1,6 @@
 import React , {useState , useEffect} from 'react'
+import { connect } from 'react-redux';
+import {signIn , signOut} from '../redux/actions'
 
 function GoogleAuth() {
 
@@ -64,4 +66,4 @@ function GoogleAuth() {
     )
 }
 
-export default GoogleAuth
+export default connect(null , {signIn , signOut})(GoogleAuth)
